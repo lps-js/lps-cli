@@ -1,0 +1,32 @@
+{
+  "name": "lps-cli",
+  "version": "1.0.0",
+  "description": "LPS CLI Tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "lps": "./bin/lps",
+    "lps-test": "./bin/test",
+    "lps-p2p-tracker": "./bin/tracker",
+    "lps-generate-spec": "./bin/generate-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mauris/lps-cli.git"
+  },
+  "author": {
+    "name": "Sam Yong",
+    "email": "samyonggit@gmail.com",
+    "url": "http://mauris.sg/"
+  },
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/mauris/lps-cli/issues"
+  },
+  "homepage": "https://github.com/mauris/lps-cli#readme",
+  "dependencies": {
+    "lps": "file:../lps"
+  }
+}
