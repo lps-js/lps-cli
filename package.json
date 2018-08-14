@@ -27,6 +27,8 @@
   },
   "homepage": "https://github.com/mauris/lps-cli#readme",
   "dependencies": {
+    "command-line-args": "^5.0.2",
+    "command-line-usage": "^5.0.5",
     "lps": "file:../lps"
   }
 }
