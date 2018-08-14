@@ -7,10 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "lps": "./bin/lps",
-    "lps-test": "./bin/test",
-    "lps-p2p-tracker": "./bin/tracker",
-    "lps-generate-spec": "./bin/generate-spec"
+    "lps": "./bin/lps.js",
+    "lps-test": "./bin/lps-test.js",
+    "lps-p2p-tracker": "./bin/tracker.js",
+    "lps-generate-spec": "./bin/generate-spec.js"
   },
   "repository": {
     "type": "git",
