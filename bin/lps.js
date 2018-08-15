@@ -89,7 +89,12 @@ const executeProgram = function executeProgram(file, programArgs) {
         process.exit(0);
       });
       
+      engine.on('warning', (warning) => {
+        Logger.error('[Warning ' + warning.type + '] ' + warning.message);
+      });
+      
       engine.on('error', (err) => {
+        Logger.error('LPS executed halted due to runtime error.');
         Logger.error(err);
         process.exit(1);
       });
