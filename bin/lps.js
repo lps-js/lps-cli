@@ -142,13 +142,20 @@ const showHelp = function showHelp() {
     {
       header: 'Synopsis',
       content: [
-        '$ lps [{bold --observer}] [-p {italic port}] [options ...] {underline program-file} [-- ...]',
+        '$ lps [options ...] {underline program-file} [otherArgs ...]',
         '$ lps {bold --help}'
       ]
     },
     {
       header: 'Options',
       optionList: buildOptionList('main')
+    },
+    {
+      header: 'Other Arguments',
+      content: [
+        'The executed LPS program can receive arguments that appear after',
+        'the {underline program-file} using the args/2 predicate'
+      ]
     }
   ];
   const usage = commandLineUsage(sections);
