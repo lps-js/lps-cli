@@ -97,9 +97,8 @@ const executeProgram = function executeProgram(file, programArgs) {
       return Promise.resolve(engine);
     })
     .catch((err) => {
-      console.log('LPS Execution Halted');
-      console.log('An error has occurred');
-      console.log(err);
+      console.error(err.message);
+      process.exit(1);
     });
 };
 
