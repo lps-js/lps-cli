@@ -16,7 +16,8 @@ LPS.loadFile(programFile)
     console.log('using\t' + specFile);
     console.log('-----');
     engine.on('error', (err) => {
-      console.log('ERROR ' + err);
+      console.error(err);
+      process.exitCode = 1;
     })
     return engine.test(specFile);
   })
@@ -33,6 +34,6 @@ LPS.loadFile(programFile)
     process.exitCode = 1;
   })
   .catch((err) => {
-    console.error(err);
+    console.error(err.message);
     process.exitCode = 1;
   });
