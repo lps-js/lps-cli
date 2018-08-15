@@ -21,7 +21,7 @@
     "email": "samyonggit@gmail.com",
     "url": "http://mauris.sg/"
   },
-  "private": true,
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/mauris/lps-cli/issues"
   },

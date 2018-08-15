@@ -14,3 +14,7 @@ Once installed, you will have the following CLI commands available for use:
 - `lps-generate-spec`: Generate a test specification file based on the output from the execution of a LPS program. Executes LPS program.
 - `lps-test`: Runs a LPS program and compares the output with a test specification file.
 - `lps-p2p-tracker`: Starts a LPS P2P Peer Tracker service.
+
+# License
+
+The LPS CLI Tools is open source and licensed under the BSD 3-Clause. The implementation depends on the LPS runtime [lps.js](https://github.com/mauris/lps.js). lps.js was implemented as part of Sam Yong's MSc Computer Science Individual Project and thesis at Imperial College London in 2018.
