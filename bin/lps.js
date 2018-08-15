@@ -5,6 +5,7 @@ const lps = require('lps');
 const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
 const selfMeta = require('../package.json');
+const Logger = require('../src/utility/Logger');
 
 const optionDefinitions = [
   {
@@ -63,31 +64,32 @@ const optionDefinitions = [
 ];
 
 const executeProgram = function executeProgram(file, programArgs) {
-  console.log('Loading file\t' + file);
+  Logger.log('Loading file ' + file);
   let startTime = Date.now();
   return lps.loadFile(file)
     .then((engine) => {
-      console.log('File loaded in ' + (Date.now() - startTime) + 'ms');
-      console.log('Cycle Interval set to ' + engine.getCycleInterval() + 'ms');
+      Logger.log('File loaded in ' + (Date.now() - startTime) + 'ms');
+      Logger.log('Cycle Interval set to ' + engine.getCycleInterval() + 'ms');
       
       engine.on('postCycle', () => {
-        console.log('[ Time ' + engine.getCurrentTime() + ' ] -------------- ' + engine.getLastCycleExecutionTime() + 'ms');
-        console.log('Actions:\t' + engine.getLastCycleActions());
-        console.log('Fluents:\t' + engine.getActiveFluents());
-        console.log('Obs:    \t' + engine.getLastCycleObservations());
-        console.log('Num Rules Fired: ' + engine.getNumLastCycleFiredRules());
-        console.log('Num Rules Resolved: ' + engine.getNumLastCycleResolvedRules());
-        console.log('Num Rules Failed: ' + engine.getNumLastCycleFailedRules());
-        console.log('');
-        console.log('');
+        Logger.log('[ Time ' + engine.getCurrentTime() + ' ] -------------- ' + engine.getLastCycleExecutionTime() + 'ms');
+        Logger.log('Actions:\t' + engine.getLastCycleActions());
+        Logger.log('Fluents:\t' + engine.getActiveFluents());
+        Logger.log('Obs:    \t' + engine.getLastCycleObservations());
+        Logger.log('Num Rules Fired: ' + engine.getNumLastCycleFiredRules());
+        Logger.log('Num Rules Resolved: ' + engine.getNumLastCycleResolvedRules());
+        Logger.log('Num Rules Failed: ' + engine.getNumLastCycleFailedRules());
+        Logger.log('');
+        Logger.log('');
       });
+      
       engine.on('done', () => {
-        console.log('Execution complete in ' + (Date.now() - startTime) + 'ms');
+        Logger.log('Execution complete in ' + (Date.now() - startTime) + 'ms');
         process.exit(0);
       });
       
       engine.on('error', (err) => {
-        console.error(err);
+        Logger.error(err);
         process.exit(1);
       });
       
@@ -97,7 +99,7 @@ const executeProgram = function executeProgram(file, programArgs) {
       return Promise.resolve(engine);
     })
     .catch((err) => {
-      console.error(err.message);
+      Logger.error(err.message);
       process.exit(1);
     });
 };
@@ -112,10 +114,10 @@ const startObservationServer = function startObservationServer(portArg) {
     });
   });
   server.on('error', (err) => {
-    console.log(err);
+    Logger.error(err);
   });
   server.listen(port, function() {
-    console.log('Observation server listening on port ' + server.address().port);
+    Logger.log('Observation server listening on port ' + server.address().port);
   });
 };
 
@@ -149,6 +151,9 @@ const showHelp = function showHelp() {
 };
 
 const options = commandLineArgs(optionDefinitions, { stopAtFirstUnknown: true })._all;
+
+Logger.verbose = options.verbose;
+Logger.quiet = options.quiet;
 
 if (options.help) {
   showHelp();
