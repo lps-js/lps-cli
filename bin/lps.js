@@ -26,6 +26,7 @@ const optionDefinitions = [
   },
   {
     name: 'verbose',
+    alias: 'V',
     type: Boolean,
     defaultValue: false,
     description: 'Turn on debugging output.',
