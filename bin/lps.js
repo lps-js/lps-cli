@@ -66,6 +66,10 @@ const optionDefinitions = [
 
 const executeProgram = function executeProgram(file, programArgs) {
   Logger.log('Loading file ' + file);
+  if (programArgs.length > 0) {
+    Logger.log('Program Arguments: ' + programArgs);
+  }
+  
   let startTime = Date.now();
   return lps.loadFile(file)
     .then((engine) => {
