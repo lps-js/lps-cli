@@ -151,31 +151,31 @@ const showHelp = function showHelp() {
   process.exit(-1);
 };
 
-const options = commandLineArgs(optionDefinitions, { stopAtFirstUnknown: true })._all;
+const options = commandLineArgs(optionDefinitions, { stopAtFirstUnknown: true });
 
-Logger.verbose = options.verbose;
-Logger.quiet = options.quiet;
+Logger.verbose = options._all.verbose;
+Logger.quiet = options._all.quiet;
 
-if (options.help) {
+if (options._all.help) {
   showHelp();
-} else if (options.version) {
-  if (options.verbose) {
+} else if (options._all.version) {
+  if (options._all.verbose) {
     const versionLabel = 'lps-cli v' + selfMeta.version + '/ lps.js v' + lps.meta.version;
     console.log('Logic Production Systems (LPS)\n' + versionLabel);
   } else {
     console.log(selfMeta.version);
   }
-} else if (options.program) {
+} else if (options._all.program) {
   // pass remaining unknowns terminated by '--' to LPS program
   let lpsProgramArgs = options._unknown || [];
   if (lpsProgramArgs.length > 0 && lpsProgramArgs[0] === '--') {
     lpsProgramArgs = lpsProgramArgs.slice(1);
   }
   
-  executeProgram(options.program, lpsProgramArgs)
+  executeProgram(options._all.program, lpsProgramArgs)
     .then(() => {
       if (options['enable-observer']) {
-        startObservationServer(options.port);
+        startObservationServer(options._all.port);
       }
     });
 } else {
