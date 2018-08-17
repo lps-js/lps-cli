@@ -6,6 +6,7 @@ const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
 const selfMeta = require('../package.json');
 const Logger = require('../src/utility/Logger');
+const buildOptionList = require('../src/utility/buildOptionList');
 
 const optionDefinitions = [
   {
@@ -131,12 +132,6 @@ const startObservationServer = function startObservationServer(portArg) {
   });
 };
 
-const buildOptionList = function buildOptionList(group) {
-  return optionDefinitions.filter((def) => {
-    return def.group === group;
-  });
-};
-
 const showHelp = function showHelp() {
   const sections = [
     {
@@ -152,7 +147,7 @@ const showHelp = function showHelp() {
     },
     {
       header: 'Options',
-      optionList: buildOptionList('main')
+      optionList: buildOptionList(optionDefinitions, 'main')
     },
     {
       header: 'Other Arguments',
