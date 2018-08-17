@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const net = require('net');
-const lps = require('lps');
+const LPS = require('lps');
 const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
 const selfMeta = require('../package.json');
@@ -16,7 +16,7 @@ const executeProgram = function executeProgram(file, programArgs) {
   }
   
   let startTime = Date.now();
-  return lps.loadFile(file)
+  return LPS.loadFile(file)
     .then((engine) => {
       Logger.log('File loaded in ' + (Date.now() - startTime) + 'ms');
       Logger.log('Cycle Interval set to ' + engine.getCycleInterval() + 'ms');
@@ -64,7 +64,7 @@ const startObservationServer = function startObservationServer(portArg) {
   const server = net.createServer((socket) => {
     socket.on('data', (data) => {
       let strData = data.toString('utf8');
-      let literal = lps.literal(strData);
+      let literal = LPS.literal(strData);
       engine.observe(literal);
     });
   });
@@ -122,7 +122,7 @@ if (options._all.help) {
   showHelp();
 } else if (options._all.version) {
   if (options._all.verbose) {
-    const versionLabel = 'lps-cli v' + selfMeta.version + '/ lps.js v' + lps.meta.version;
+    const versionLabel = 'lps-cli v' + selfMeta.version + '/ lps.js v' + LPS.meta.version;
     console.log('Logic Production Systems (LPS)\n' + versionLabel);
   } else {
     console.log(selfMeta.version);
