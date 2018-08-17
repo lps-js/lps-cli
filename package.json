@@ -29,6 +29,6 @@
   "dependencies": {
     "command-line-args": "^5.0.2",
     "command-line-usage": "^5.0.5",
-    "lps": "file:../lps"
+    "lps": "^1.0.0"
   }
 }
