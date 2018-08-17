@@ -12,7 +12,7 @@
   },
   "bin": {
     "lps": "./bin/lps.js",
-    "lps-test": "./bin/lps-test.js",
+    "lps-test": "./bin/test.js",
     "lps-p2p-tracker": "./bin/tracker.js",
     "lps-generate-spec": "./bin/generate-spec.js"
   },
