@@ -1,6 +1,6 @@
 {
   "name": "lps-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Logic Production Systems (LPS) CLI Tools",
   "main": "index.js",
   "scripts": {
