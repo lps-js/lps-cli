@@ -24,7 +24,8 @@ function runTest(programFile, specFile) {
         process.exitCode = 1;
       });
       
-      return engine.test(specFile);
+      let tester = new LPS.Tester(engine);
+      return tester.test(specFile);
     })
     .then((result) => {
       if (result.success) {
