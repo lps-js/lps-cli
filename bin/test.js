@@ -7,12 +7,13 @@ const selfMeta = require('../package.json');
 const Logger = require('../src/utility/Logger');
 const buildOptionList = require('../src/utility/buildOptionList');
 const optionDefinitions = require('../src/options/test');
+const consoleColors = require('../src/utility/colors.json');
 
 function runTest(programFile, specFile) {
   LPS.loadFile(programFile)
     .then((engine) => {
-      Logger.log('Testing\t' + programFile);
-      Logger.log('using\t' + specFile);
+      Logger.log('Testing\t' + consoleColors.fgYellow + programFile + consoleColors.reset);
+      Logger.log('using\t' + consoleColors.fgYellow + specFile + consoleColors.reset);
       Logger.log('-----');
       
       engine.on('warning', (err) => {
@@ -30,10 +31,10 @@ function runTest(programFile, specFile) {
     .then((result) => {
       if (result.success) {
         process.exitCode = 0;
-        Logger.log('Successful');
+        Logger.log(consoleColors.fgGreen + 'Successful' + consoleColors.reset);
         return;
       }
-      Logger.error(result.errors.length + ' errors:');
+      Logger.error(consoleColors.fgRed + result.errors.length + ' errors:' + consoleColors.reset);
       result.errors.forEach((err) => {
         Logger.error('  ' + err);
       });
