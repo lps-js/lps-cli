@@ -1,0 +1,13 @@
+{
+  "reset": "\u001B[0m",
+  "underline": "\u001B[4m",
+  "hidden": "\u001B[8m",
+  "fgBlack": "\u001B[30m",
+  "fgRed": "\u001B[31m",
+  "fgGreen": "\u001B[32m",
+  "fgYellow": "\u001B[33m",
+  "fgBlue": "\u001B[34m",
+  "fgMegenta": "\u001B[35m",
+  "fgCyan": "\u001B[36m",
+  "fgWhite": "\u001B[37m"
+}
