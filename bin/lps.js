@@ -16,7 +16,7 @@ const executeProgram = function executeProgram(file, programArgs) {
   }
   
   let startTime = Date.now();
-  return LPS.loadFile(file)
+  return LPS.loadFile(file, programArgs)
     .then((engine) => {
       Logger.log('File loaded in ' + (Date.now() - startTime) + 'ms');
       Logger.log('Cycle Interval set to ' + engine.getCycleInterval() + 'ms');
