@@ -18,17 +18,19 @@ const executeProgram = function executeProgram(file, programArgs) {
   let startTime = Date.now();
   return LPS.loadFile(file, programArgs)
     .then((engine) => {
+      let profiler = engine.getProfiler();
       Logger.log('File loaded in ' + (Date.now() - startTime) + 'ms');
       Logger.log('Cycle Interval set to ' + engine.getCycleInterval() + 'ms');
       
       engine.on('postCycle', () => {
-        Logger.log('[ Time ' + engine.getCurrentTime() + ' ] -------------- ' + engine.getLastCycleExecutionTime() + 'ms');
+        Logger.log('[ Time ' + engine.getCurrentTime() + ' ] -------------- ' + profiler.get('lastCycleExecutionTime') + 'ms');
         Logger.log('Actions:\t' + engine.getLastCycleActions());
         Logger.log('Fluents:\t' + engine.getActiveFluents());
         Logger.log('Obs:    \t' + engine.getLastCycleObservations());
-        Logger.log('Num Rules Fired: ' + engine.getNumLastCycleFiredRules());
-        Logger.log('Num Rules Resolved: ' + engine.getNumLastCycleResolvedRules());
-        Logger.log('Num Rules Failed: ' + engine.getNumLastCycleFailedRules());
+        Logger.log('Num Rules Fired: ' + profiler.get('lastCycleNumFiredRules'));
+        Logger.log('Num Rules Unresolved: ' + profiler.get('lastCycleNumUnresolvedGoals'));
+        Logger.log('Num Rules Resolved: ' + profiler.get('lastCycleNumResolvedGoals'));
+        Logger.log('Num Rules Failed: ' + profiler.get('lastCycleNumFailedGoals'));
         Logger.log('');
         Logger.log('');
       });
