@@ -72,7 +72,7 @@ function generateSpec(programFile, specFile) {
         });
         
         writeOutput('expect_num_of(' + ['firedRules', endTime, profiler.get('lastCycleNumFiredRules')].join(', ') + ').\n');
-        writeOutput('expect_num_of(' + ['resolvedGoals', endTime, profiler.get('lastCycleNumResolvedGoal')].join(', ') + ').\n');
+        writeOutput('expect_num_of(' + ['resolvedGoals', endTime, profiler.get('lastCycleNumResolvedGoals')].join(', ') + ').\n');
         writeOutput('expect_num_of(' + ['unresolvedGoals', endTime, profiler.get('lastCycleNumUnresolvedGoals')].join(', ') + ').\n');
         writeOutput('expect_num_of(' + ['failedGoals', endTime, profiler.get('lastCycleNumFailedGoals')].join(', ') + ').\n');
         
