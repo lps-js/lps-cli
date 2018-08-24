@@ -34,12 +34,14 @@ function generateSpec(programFile, specFile) {
   LPS.loadFile(programFile)
     .then((engine) => {
       let profiler = engine.getProfiler();
+      writeOutput('% --- Specification generated for ' + programFile + '\n');
       
       engine.on('postCycle', () => {
         let currentTime = engine.getCurrentTime();
         let startTime = currentTime - 1;
         let endTime = currentTime;
         
+        writeOutput('% --- Start of cycle ' + endTime + ' ---\n');
         writeOutput('expect_num_of(' + ['fluent', currentTime, profiler.get('numState')].join(', ') + ').\n');
         engine.getActiveFluents().forEach((termArg) => {
           let lpsTerm = LPS.literal(termArg);
@@ -70,6 +72,9 @@ function generateSpec(programFile, specFile) {
         });
         
         writeOutput('expect_num_of(' + ['firedRules', endTime, profiler.get('lastCycleNumFiredRules')].join(', ') + ').\n');
+        writeOutput('expect_num_of(' + ['resolvedGoals', endTime, profiler.get('lastCycleNumResolvedGoal')].join(', ') + ').\n');
+        writeOutput('expect_num_of(' + ['unresolvedGoals', endTime, profiler.get('lastCycleNumUnresolvedGoals')].join(', ') + ').\n');
+        writeOutput('expect_num_of(' + ['failedGoals', endTime, profiler.get('lastCycleNumFailedGoals')].join(', ') + ').\n');
         
         writeOutput('\n');
       });
