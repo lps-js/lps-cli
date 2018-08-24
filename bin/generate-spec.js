@@ -69,6 +69,8 @@ function generateSpec(programFile, specFile) {
           writeOutput(INDENTATION + 'expect(' + ['observation', startTime, endTime, term.toString()].join(', ') + ').\n');
         });
         
+        writeOutput('expect_num_of(' + ['firedRules', endTime, profiler.get('lastCycleNumFiredRules')].join(', ') + ').\n');
+        
         writeOutput('\n');
       });
       
