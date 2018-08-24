@@ -33,12 +33,14 @@ function generateSpec(programFile, specFile) {
 
   LPS.loadFile(programFile)
     .then((engine) => {
+      let profiler = engine.getProfiler();
+      
       engine.on('postCycle', () => {
         let currentTime = engine.getCurrentTime();
         let startTime = currentTime - 1;
         let endTime = currentTime;
         
-        writeOutput('expect_num_of(' + ['fluent', currentTime, engine.getNumActiveFluents()].join(', ') + ').\n');
+        writeOutput('expect_num_of(' + ['fluent', currentTime, profiler.get('numState')].join(', ') + ').\n');
         engine.getActiveFluents().forEach((termArg) => {
           let lpsTerm = LPS.literal(termArg);
           let args = lpsTerm.getArguments();
@@ -51,7 +53,7 @@ function generateSpec(programFile, specFile) {
           return;
         }
         
-        writeOutput('expect_num_of(' + ['action', startTime, endTime, engine.getNumLastCycleActions()].join(', ') + ').\n');
+        writeOutput('expect_num_of(' + ['action', startTime, endTime, profiler.get('lastCycleNumActions')].join(', ') + ').\n');
         engine.getLastCycleActions().forEach((termArg) => {
           let lpsTerm = LPS.literal(termArg);
           let args = lpsTerm.getArguments();
@@ -59,7 +61,7 @@ function generateSpec(programFile, specFile) {
           writeOutput(INDENTATION + 'expect(' + ['action', startTime, endTime, term.toString()].join(', ') + ').\n');
         });
         
-        writeOutput('expect_num_of(' + ['observation', startTime, endTime, engine.getNumLastCycleObservations()].join(', ') + ').\n');
+        writeOutput('expect_num_of(' + ['observation', startTime, endTime, profiler.get('lastCycleNumObservations')].join(', ') + ').\n');
         engine.getLastCycleObservations().forEach((termArg) => {
           let lpsTerm = LPS.literal(termArg);
           let args = lpsTerm.getArguments();
