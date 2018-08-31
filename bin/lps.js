@@ -66,7 +66,7 @@ const executeProgram = function executeProgram(file, programArgs) {
  * @param  {number} portArg The port number to use, set to 0 for random available port determined
  *                          by the system.
  */
-const startObservationServer = function startObservationServer(portArg) {
+const startObservationServer = function startObservationServer(engine, portArg) {
   let port = portArg;
   const server = net.createServer((socket) => {
     socket.on('data', (data) => {
@@ -145,10 +145,10 @@ if (options._all.help) {
 
   // start program execution
   executeProgram(options._all.program, lpsProgramArgs)
-    .then(() => {
+    .then((engine) => {
       // if observer is enabled, start observation server.
       if (options._all['enable-observer']) {
-        startObservationServer(options._all.port);
+        startObservationServer(engine, options._all.port);
       }
     });
 } else {
