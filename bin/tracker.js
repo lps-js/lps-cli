@@ -2,10 +2,10 @@
 const net = require('net');
 const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
-const selfMeta = require('../package.json');
 const Logger = require('../src/utility/Logger');
 const buildOptionList = require('../src/utility/buildOptionList');
 const optionDefinitions = require('../src/options/tracker');
+const printVersion = require('../src/utility/printVersion');
 
 function startTrackingServer(port) {
   let nodes = [];
@@ -111,12 +111,8 @@ Logger.quiet = options._all.quiet;
 if (options._all.help) {
   showHelp();
 } else if (options._all.version) {
-  if (options._all.verbose) {
-    const versionLabel = 'lps-cli v' + selfMeta.version;
-    console.log('Logic Production Systems (LPS) CLI Tools\n' + versionLabel);
-  } else {
-    console.log(selfMeta.version);
-  }
+  // if version option is set, show version.
+  printVersion(options._all.verbose);
 } else {
   startTrackingServer(options._all.port);
 }

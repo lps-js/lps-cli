@@ -3,10 +3,10 @@
 const LPS = require('lps');
 const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
-const selfMeta = require('../package.json');
 const Logger = require('../src/utility/Logger');
 const buildOptionList = require('../src/utility/buildOptionList');
 const optionDefinitions = require('../src/options/generate-spec');
+const printVersion = require('../src/utility/printVersion');
 const fs = require('fs');
 
 const args = process.argv.slice(2);
@@ -109,12 +109,8 @@ Logger.quiet = options._all.quiet;
 if (options._all.help) {
   showHelp();
 } else if (options._all.version) {
-  if (options._all.verbose) {
-    const versionLabel = 'lps-cli v' + selfMeta.version + '/ lps.js v' + LPS.meta.version;
-    console.log('Logic Production Systems (LPS)\n' + versionLabel);
-  } else {
-    console.log(selfMeta.version);
-  }
+  // if version option is set, show version.
+  printVersion(options._all.verbose);
 } else if (options._all.program) {
   generateSpec(options._all.program, options._all.out);
 } else {

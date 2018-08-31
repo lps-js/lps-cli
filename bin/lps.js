@@ -4,10 +4,10 @@ const net = require('net');
 const LPS = require('lps');
 const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
-const selfMeta = require('../package.json');
 const Logger = require('../src/utility/Logger');
 const buildOptionList = require('../src/utility/buildOptionList');
 const optionDefinitions = require('../src/options/lps');
+const printVersion = require('../src/utility/printVersion');
 
 const executeProgram = function executeProgram(file, programArgs) {
   Logger.log('Loading file ' + file);
@@ -135,14 +135,7 @@ if (options._all.help) {
   showHelp();
 } else if (options._all.version) {
   // if version option is set, show version.
-  if (options._all.verbose) {
-    // show CLI and lps.js versions
-    const versionLabel = 'lps-cli v' + selfMeta.version + '/ lps.js v' + LPS.meta.version;
-    console.log('Logic Production Systems (LPS)\n' + versionLabel);
-  } else {
-    // only show CLI tools version if not verbose
-    console.log(selfMeta.version);
-  }
+  printVersion(options._all.verbose);
 } else if (options._all.program) {
   // pass remaining unknowns terminated by '--' to LPS program
   let lpsProgramArgs = options._unknown || [];
