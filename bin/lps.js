@@ -90,7 +90,7 @@ const showHelp = function showHelp() {
   const sections = [
     {
       header: 'lps',
-      content: 'Logic Production Systems runtime environment in JavaScript'
+      content: 'Logic Production System runtime environment in Node.js'
     },
     {
       header: 'Synopsis',
@@ -107,7 +107,7 @@ const showHelp = function showHelp() {
       header: 'Other Arguments',
       content: [
         'The executed LPS program can receive arguments that appear after',
-        'the {underline program-file} using the {bold args/2} predicate.'
+        'the {underline program-file} using the {bold lpsArgs/2} predicate.'
       ]
     },
     {
