@@ -20,16 +20,16 @@ function runTest(programFile, specFile) {
       Logger.log('Testing\t' + consoleColors.fgYellow + programFile + consoleColors.reset);
       Logger.log('using\t' + consoleColors.fgYellow + specFile + consoleColors.reset);
       Logger.log('-----');
-      
+
       engine.on('warning', (err) => {
         Logger.error(err);
       });
-      
+
       engine.on('error', (err) => {
         Logger.error(err);
         process.exitCode = 1;
       });
-      
+
       let tester = new LPS.Tester(engine);
       return tester.test(specFile);
     })
@@ -48,7 +48,7 @@ function runTest(programFile, specFile) {
     .catch((err) => {
       Logger.error(err.message);
       process.exitCode = 1;
-    });  
+    });
 }
 
 /**
@@ -102,4 +102,3 @@ if (options._all.help) {
 } else {
   showHelp();
 }
-

@@ -35,12 +35,12 @@ function generateSpec(programFile, specFile) {
     .then((engine) => {
       let profiler = engine.getProfiler();
       writeOutput('% --- Specification generated for ' + programFile + '\n');
-      
+
       engine.on('postCycle', () => {
         let currentTime = engine.getCurrentTime();
         let startTime = currentTime - 1;
         let endTime = currentTime;
-        
+
         writeOutput('% --- Start of cycle ' + endTime + ' ---\n');
         writeOutput('expect_num_of(' + ['fluent', currentTime, profiler.get('numState')].join(', ') + ').\n');
         engine.getActiveFluents().forEach((termArg) => {
@@ -49,12 +49,12 @@ function generateSpec(programFile, specFile) {
           let term = new LPS.Functor(lpsTerm.getName(), args);
           writeOutput(INDENTATION + 'expect(' + ['fluent', currentTime, term.toString()].join(', ') + ').\n');
         });
-        
+
         if (startTime === 0) {
           writeOutput('\n');
           return;
         }
-        
+
         writeOutput('expect_num_of(' + ['action', startTime, endTime, profiler.get('lastCycleNumActions')].join(', ') + ').\n');
         engine.getLastCycleActions().forEach((termArg) => {
           let lpsTerm = LPS.literal(termArg);
@@ -62,7 +62,7 @@ function generateSpec(programFile, specFile) {
           let term = new LPS.Functor(lpsTerm.getName(), args);
           writeOutput(INDENTATION + 'expect(' + ['action', startTime, endTime, term.toString()].join(', ') + ').\n');
         });
-        
+
         writeOutput('expect_num_of(' + ['observation', startTime, endTime, profiler.get('lastCycleNumObservations')].join(', ') + ').\n');
         engine.getLastCycleObservations().forEach((termArg) => {
           let lpsTerm = LPS.literal(termArg);
@@ -70,19 +70,19 @@ function generateSpec(programFile, specFile) {
           let term = new LPS.Functor(lpsTerm.getName(), args);
           writeOutput(INDENTATION + 'expect(' + ['observation', startTime, endTime, term.toString()].join(', ') + ').\n');
         });
-        
+
         writeOutput('expect_num_of(' + ['firedRules', endTime, profiler.get('lastCycleNumFiredRules')].join(', ') + ').\n');
         writeOutput('expect_num_of(' + ['resolvedGoals', endTime, profiler.get('lastCycleNumResolvedGoals')].join(', ') + ').\n');
         writeOutput('expect_num_of(' + ['unresolvedGoals', endTime, profiler.get('lastCycleNumUnresolvedGoals')].join(', ') + ').\n');
         writeOutput('expect_num_of(' + ['failedGoals', endTime, profiler.get('lastCycleNumFailedGoals')].join(', ') + ').\n');
-        
+
         writeOutput('\n');
       });
-      
+
       engine.on('error', (err) => {
         Logger.error(err);
       });
-      
+
       if (specFile !== null) {
         // write to file when program is done
         engine.on('done', () => {
@@ -91,7 +91,7 @@ function generateSpec(programFile, specFile) {
           });
         });
       }
-      
+
       Logger.log('Executing ' + programFile);
       Logger.log('-----');
       engine.run();
@@ -146,5 +146,3 @@ if (options._all.help) {
 } else {
   showHelp();
 }
-
-  

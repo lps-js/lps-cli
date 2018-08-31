@@ -14,14 +14,14 @@ const executeProgram = function executeProgram(file, programArgs) {
   if (programArgs.length > 0) {
     Logger.log('Program Arguments: ' + programArgs);
   }
-  
+
   let startTime = Date.now();
   return LPS.loadFile(file, programArgs)
     .then((engine) => {
       let profiler = engine.getProfiler();
       Logger.log('File loaded in ' + (Date.now() - startTime) + 'ms');
       Logger.log('Cycle Interval set to ' + engine.getCycleInterval() + 'ms');
-      
+
       engine.on('postCycle', () => {
         Logger.log('[ Time ' + engine.getCurrentTime() + ' ] -------------- ' + profiler.get('lastCycleExecutionTime') + 'ms');
         Logger.log('Actions:\t' + engine.getLastCycleActions());
@@ -34,23 +34,23 @@ const executeProgram = function executeProgram(file, programArgs) {
         Logger.log('');
         Logger.log('');
       });
-      
+
       engine.on('done', () => {
         Logger.log('Execution complete in ' + (Date.now() - startTime) + 'ms');
         process.exit(0);
       });
-      
+
       engine.on('warning', (warning) => {
         Logger.error('[Warning ' + warning.type + '] ' + warning.message);
       });
-      
+
       engine.on('error', (err) => {
         Logger.error('LPS executed halted due to runtime error.');
         Logger.error(err);
         process.exit(1);
       });
-      
-      startTime = Date.now();    
+
+      startTime = Date.now();
       engine.run();
 
       return Promise.resolve(engine);
@@ -142,7 +142,7 @@ if (options._all.help) {
   if (lpsProgramArgs.length > 0 && lpsProgramArgs[0] === '--') {
     lpsProgramArgs = lpsProgramArgs.slice(1);
   }
-  
+
   // start program execution
   executeProgram(options._all.program, lpsProgramArgs)
     .then(() => {
@@ -155,5 +155,3 @@ if (options._all.help) {
   // if there are no arguments set, show help anyway.
   showHelp();
 }
-
-

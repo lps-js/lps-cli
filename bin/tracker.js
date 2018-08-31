@@ -13,7 +13,7 @@ function startTrackingServer(port) {
 
   const server = net.createServer((socket) => {
     Logger.log('[Info] ' + socket.remoteAddress + ' has connected.');
-    
+
     socket.on('data', (buf) => {
       let data;
       try {
@@ -36,10 +36,10 @@ function startTrackingServer(port) {
         Logger.log('[Info] ' + entry + ' has registered.');
       }
     });
-    
+
     socket.on('end', () => {
       let indices = [];
-      
+
       // announce node exit
       nodes.forEach((node, idx) => {
         if (node === socket) {
@@ -47,17 +47,17 @@ function startTrackingServer(port) {
           return;
         }
       });
-      
+
       indices.forEach((index) => {
         let address = addresses[index];
         nodes = nodes.slice(0, index).concat(nodes.slice(index + 1));
         addresses = addresses.slice(0, index).concat(addresses.slice(index + 1));
-        
+
         nodes.forEach((node) => {
           node.write(JSON.stringify({ removeNode: address }));
         });
       });
-      
+
       Logger.log('[Info] ' + socket.remoteAddress + ' has left.');
     });
   });
@@ -65,11 +65,11 @@ function startTrackingServer(port) {
   server.on('error', (err) => {
     Logger.error('[Error] ' + err);
   });
-  
+
   server.on('listening', () => {
     Logger.log('[Info] P2P Tracking service started on ' + JSON.stringify(server.address()));
   });
-  
+
   server.listen(port);
 }
 
@@ -119,5 +119,3 @@ if (options._all.help) {
 } else {
   startTrackingServer(options._all.port);
 }
-
-
