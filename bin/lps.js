@@ -61,6 +61,11 @@ const executeProgram = function executeProgram(file, programArgs) {
     });
 };
 
+/**
+ * Start a TCP server to listen for observations that will be passed into the running LPS program
+ * @param  {number} portArg The port number to use, set to 0 for random available port determined
+ *                          by the system.
+ */
 const startObservationServer = function startObservationServer(portArg) {
   let port = portArg;
   const server = net.createServer((socket) => {
@@ -78,6 +83,9 @@ const startObservationServer = function startObservationServer(portArg) {
   });
 };
 
+/**
+ * Show the help and usage guide for this program
+ */
 const showHelp = function showHelp() {
   const sections = [
     {
@@ -115,18 +123,24 @@ const showHelp = function showHelp() {
   process.exit(-1);
 };
 
+// process arguments
 const options = commandLineArgs(optionDefinitions, { stopAtFirstUnknown: true });
 
 Logger.verbose = options._all.verbose;
 Logger.quiet = options._all.quiet;
 
+
 if (options._all.help) {
+  // if help option is set, show help
   showHelp();
 } else if (options._all.version) {
+  // if version option is set, show version.
   if (options._all.verbose) {
+    // show CLI and lps.js versions
     const versionLabel = 'lps-cli v' + selfMeta.version + '/ lps.js v' + LPS.meta.version;
     console.log('Logic Production Systems (LPS)\n' + versionLabel);
   } else {
+    // only show CLI tools version if not verbose
     console.log(selfMeta.version);
   }
 } else if (options._all.program) {
@@ -136,13 +150,16 @@ if (options._all.help) {
     lpsProgramArgs = lpsProgramArgs.slice(1);
   }
   
+  // start program execution
   executeProgram(options._all.program, lpsProgramArgs)
     .then(() => {
-      if (options['enable-observer']) {
+      // if observer is enabled, start observation server.
+      if (options._all['enable-observer']) {
         startObservationServer(options._all.port);
       }
     });
 } else {
+  // if there are no arguments set, show help anyway.
   showHelp();
 }
 
