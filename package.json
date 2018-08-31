@@ -16,7 +16,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint bin src",
-    "postversion": "git push --tags",
+    "postversion": "git push --tags && git push",
     "publish:alpha": "npm publish --tag alpha",
     "publish:beta": "npm publish --tag beta",
     "publish:latest": "npm publish"
