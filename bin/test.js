@@ -9,6 +9,11 @@ const optionDefinitions = require('../src/options/test');
 const consoleColors = require('../src/utility/colors.json');
 const printVersion = require('../src/utility/printVersion');
 
+/**
+ * Start the testing process for a program against its specification file.
+ * @param  {string} programFile The path name on the file system to the LPS program file.
+ * @param  {string} specFile    The path name on the file system to the specification file
+ */
 function runTest(programFile, specFile) {
   LPS.loadFile(programFile)
     .then((engine) => {
@@ -46,10 +51,40 @@ function runTest(programFile, specFile) {
     });  
 }
 
+/**
+ * Show help and usage guide for this tool
+ */
 function showHelp() {
-  
+  const sections = [
+    {
+      header: 'lps-test',
+      content: 'LPS tester program'
+    },
+    {
+      header: 'Synopsis',
+      content: [
+        '$ lps-test [options ...] {underline program-file} {underline spec-file}',
+        '$ lps-test {bold --help}'
+      ]
+    },
+    {
+      header: 'Options',
+      optionList: buildOptionList(optionDefinitions, 'main')
+    },
+    {
+      header: 'Updating and more info',
+      content: [
+        'Use \'npm i -g lps-cli\' to update LPS CLI tools package.',
+        'For bug reports and other contributions, please visit https://github.com/mauris/lps-cli'
+      ]
+    }
+  ];
+  const usage = commandLineUsage(sections);
+  console.log(usage);
+  process.exit(-1);
 }
 
+// process program arguments
 const options = commandLineArgs(optionDefinitions, { stopAtFirstUnknown: true });
 
 Logger.verbose = options._all.verbose;
