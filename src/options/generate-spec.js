@@ -26,7 +26,7 @@ module.exports = [
     alias: 'o',
     defaultValue: null,
     type: String,
-    description: 'Set the output file',
+    description: 'Set the output file. If omitted, the output will be printed on standard output.',
     group: 'main'
   },
   {

@@ -102,7 +102,33 @@ function generateSpec(programFile, specFile) {
 }
 
 function showHelp() {
-  
+  const sections = [
+    {
+      header: 'lps-generate-spec',
+      content: 'LPS Program Specification Generator'
+    },
+    {
+      header: 'Synopsis',
+      content: [
+        '$ lps-generate-spec [options ...] {underline program-file}',
+        '$ lps-test {bold --help}'
+      ]
+    },
+    {
+      header: 'Options',
+      optionList: buildOptionList(optionDefinitions, 'main')
+    },
+    {
+      header: 'Updating and more info',
+      content: [
+        'Use \'npm i -g lps-cli\' to update LPS CLI tools package.',
+        'For bug reports and other contributions, please visit https://github.com/mauris/lps-cli'
+      ]
+    }
+  ];
+  const usage = commandLineUsage(sections);
+  console.log(usage);
+  process.exit(-1);
 }
 
 const options = commandLineArgs(optionDefinitions, { stopAtFirstUnknown: true });
