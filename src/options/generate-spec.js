@@ -42,7 +42,7 @@ module.exports = [
     alias: 'v',
     type: Boolean,
     defaultValue: false,
-    description: 'Print the CLI tools package version. In verbose mode, the version of lps.js is printed.',
+    description: 'Print the CLI tools package version. In verbose mode, the version of lps.js used by the CLI tools package is printed.',
     group: 'main'
   }
 ];

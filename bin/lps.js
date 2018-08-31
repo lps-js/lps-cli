@@ -90,7 +90,7 @@ const showHelp = function showHelp() {
   const sections = [
     {
       header: 'lps',
-      content: 'Logic Production System runtime environment in Node.js'
+      content: 'Logic Production System (LPS) runtime environment in Node.js'
     },
     {
       header: 'Synopsis',
