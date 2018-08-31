@@ -9,15 +9,6 @@ const optionDefinitions = require('../src/options/generate-spec');
 const printVersion = require('../src/utility/printVersion');
 const fs = require('fs');
 
-const args = process.argv.slice(2);
-const programFile = args.length > 0 ? args[0] : null;
-const specFile = args.length > 1 ? args[1]: null;
-
-if (programFile === null) {
-  console.error('A LPS program file must be supplied as arguments to the LPS spec generating program.');
-  process.exit(1);
-}
-
 const INDENTATION = '  ';
 
 function generateSpec(programFile, specFile) {

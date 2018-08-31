@@ -19,7 +19,7 @@ function startTrackingServer(port) {
       try {
         data = JSON.parse(buf.toString('utf8'));
       } catch (e) {
-        Logger.error('[Error] Invalid data received.')
+        Logger.error('[Error] Invalid data received.');
         return;
       }
       if (data === undefined) {
@@ -29,7 +29,7 @@ function startTrackingServer(port) {
         let entry = [socket.remoteAddress, data.register];
         socket.write(JSON.stringify({ peers: addresses }));
         nodes.forEach((node) => {
-          node.write(JSON.stringify({ newNode: entry }))
+          node.write(JSON.stringify({ newNode: entry }));
         });
         nodes.push(socket);
         addresses.push(entry);
@@ -44,7 +44,6 @@ function startTrackingServer(port) {
       nodes.forEach((node, idx) => {
         if (node === socket) {
           indices.push(idx);
-          return;
         }
       });
 

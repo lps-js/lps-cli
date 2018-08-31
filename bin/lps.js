@@ -78,7 +78,7 @@ const startObservationServer = function startObservationServer(engine, portArg) 
   server.on('error', (err) => {
     Logger.error(err);
   });
-  server.listen(port, function() {
+  server.listen(port, () => {
     Logger.log('Observation server listening on port ' + server.address().port);
   });
 };
