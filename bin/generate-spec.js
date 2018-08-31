@@ -101,6 +101,10 @@ function generateSpec(programFile, specFile) {
     });
 }
 
+function showHelp() {
+  
+}
+
 const options = commandLineArgs(optionDefinitions, { stopAtFirstUnknown: true });
 
 Logger.verbose = options._all.verbose;

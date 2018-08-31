@@ -113,7 +113,7 @@ const showHelp = function showHelp() {
     {
       header: 'Updating and more info',
       content: [
-        'Use \'npm i -g lps-cli\' to update LPS CLI package.',
+        'Use \'npm i -g lps-cli\' to update LPS CLI tools package.',
         'For bug reports and other contributions, please visit https://github.com/mauris/lps-cli'
       ]
     }

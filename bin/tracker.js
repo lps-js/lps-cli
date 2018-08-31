@@ -77,7 +77,10 @@ function showHelp() {
   const sections = [
     {
       header: 'lps-p2p-tracker',
-      content: 'LPS Peer-to-peer Presence Tracking Service'
+      content: [
+        'LPS Peer-to-peer (P2P) Presence Tracking Service',
+        'Note that this tool needs to be used with the {underline p2p} module in lps.js'
+      ]
     },
     {
       header: 'Synopsis',
