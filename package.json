@@ -44,7 +44,7 @@
   "dependencies": {
     "command-line-args": "^5.0.2",
     "command-line-usage": "^5.0.5",
-    "lps": "^1.0.9"
+    "lps": "^1.0.10"
   },
   "devDependencies": {
     "eslint": "^5.3.0",
