@@ -36,7 +36,7 @@ const executeProgram = function executeProgram(file, programArgs) {
       });
 
       engine.on('done', () => {
-        Logger.log('Execution complete in ' + (Date.now() - startTime) + 'ms');
+        Logger.log('Completed in ' + (Date.now() - startTime) + 'ms');
         process.exit(0);
       });
 
@@ -107,13 +107,13 @@ const showHelp = function showHelp() {
       header: 'Other Arguments',
       content: [
         'The executed LPS program can receive arguments that appear after',
-        'the {underline program-file} using the {bold lpsArgs/2} predicate.'
+        'the {underline program-file} using the {bold lpsArgs/1} predicate.'
       ]
     },
     {
       header: 'Updating and more info',
       content: [
-        'Use \'npm i -g lps-cli\' to update LPS CLI tools package.',
+        'Use \'npm i -g lps-cli\' to update LPS CLI toolset package.',
         'For bug reports and other contributions, please visit https://github.com/mauris/lps-cli'
       ]
     }
