@@ -27,10 +27,10 @@ const executeProgram = function executeProgram(file, programArgs) {
         Logger.log('Actions:\t' + engine.getLastCycleActions());
         Logger.log('Fluents:\t' + engine.getActiveFluents());
         Logger.log('Obs:    \t' + engine.getLastCycleObservations());
-        Logger.log('Num Rules Fired: ' + profiler.get('lastCycleNumFiredRules'));
-        Logger.log('Num Rules Unresolved: ' + profiler.get('lastCycleNumUnresolvedGoals'));
-        Logger.log('Num Rules Resolved: ' + profiler.get('lastCycleNumResolvedGoals'));
-        Logger.log('Num Rules Failed: ' + profiler.get('lastCycleNumFailedGoals'));
+        Logger.log('Rules fired: ' + profiler.get('lastCycleNumFiredRules'));
+        Logger.log('Rules unresolved: ' + profiler.get('lastCycleNumUnresolvedGoals'));
+        Logger.log('Rules resolved: ' + profiler.get('lastCycleNumResolvedGoals'));
+        Logger.log('Rules failed: ' + profiler.get('lastCycleNumFailedGoals'));
         Logger.log('');
         Logger.log('');
       });
