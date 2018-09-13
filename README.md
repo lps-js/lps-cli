@@ -1,4 +1,6 @@
-# LPS CLI Toolsset
+# LPS CLI Toolset
+
+ [![lps-cli package on npm](https://img.shields.io/npm/v/lps-cli.svg)](https://npmjs.com/package/lps-cli) ![lps.js Dependencies](https://img.shields.io/david/mauris/lps-cli.svg)
 
 LPS is a logic-based programming language and production system developed by Robert Kowalski and Fariba Sadri at Imperial College London. This CLI toolset uses [lps.js](https://github.com/mauris/lps.js), the LPS runtime implemented in JavaScript, to enable access to LPS from the command line using Node.js.
 
