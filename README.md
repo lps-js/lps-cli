@@ -1,6 +1,6 @@
-# LPS CLI Tools
+# LPS CLI Toolsset
 
-LPS is a logic-based programming language and production system developed by Robert Kowalski and Fariba Sadri at Imperial College London. This set of CLI tools uses [lps.js](https://github.com/mauris/lps.js), the LPS runtime implemented in JavaScript.
+LPS is a logic-based programming language and production system developed by Robert Kowalski and Fariba Sadri at Imperial College London. This CLI toolset uses [lps.js](https://github.com/mauris/lps.js), the LPS runtime implemented in JavaScript, to enable access to LPS from the command line using Node.js.
 
 This repository contains CLI tools that complement to the usage [lps.js](https://github.com/mauris/lps.js) on your system. To use lps.js in the browser context or as a Node.js library, see the main repository for instructions.
 
@@ -19,4 +19,4 @@ To get help for the options and usage of each CLI tool, use the `--help` option,
 
 # License
 
-The LPS CLI Tools package is open source and licensed under the BSD 3-Clause. The implementation depends on the LPS runtime [lps.js](https://github.com/mauris/lps.js). lps.js was implemented as part of Sam Yong's MSc Computer Science Individual Project and thesis at Imperial College London in 2018.
+The LPS CLI Toolset package is release open source under the BSD 3-Clause License. The implementation depends on the LPS runtime [lps.js](https://github.com/mauris/lps.js). lps.js was implemented as part of Sam Yong's MSc Computer Science Individual Project and thesis at Imperial College London in 2018.
