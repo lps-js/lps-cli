@@ -1,7 +1,7 @@
 {
   "name": "lps-cli",
   "version": "1.0.8",
-  "description": "Logic Production System (LPS) CLI Tools",
+  "description": "Logic Production System (LPS) CLI Toolset",
   "main": "index.js",
   "keywords": [
     "ai",
