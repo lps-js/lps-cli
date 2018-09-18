@@ -16,12 +16,9 @@ const executeProgram = function executeProgram(file, programArgs) {
   }
 
   let startTime = Date.now();
-  return LPS.loadFile(file, programArgs)
+  return LPS.createFromFile(file, programArgs)
     .then((engine) => {
       let profiler = engine.getProfiler();
-      Logger.log('File loaded in ' + (Date.now() - startTime) + 'ms');
-      Logger.log('Cycle Interval set to ' + engine.getCycleInterval() + 'ms');
-
       engine.on('postCycle', () => {
         Logger.log('[ Time ' + engine.getCurrentTime() + ' ] -------------- ' + profiler.get('lastCycleExecutionTime') + 'ms');
         Logger.log('Actions:\t' + engine.getLastCycleActions());
@@ -49,6 +46,15 @@ const executeProgram = function executeProgram(file, programArgs) {
         Logger.error(err);
         process.exit(1);
       });
+
+      return engine.load()
+        .then(() => {
+          return Promise.resolve(engine)
+        });
+    })
+    .then((engine) => {
+      Logger.log('File loaded in ' + (Date.now() - startTime) + 'ms');
+      Logger.log('Cycle Interval set to ' + engine.getCycleInterval() + 'ms');
 
       startTime = Date.now();
       engine.run();
