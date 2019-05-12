@@ -47,10 +47,10 @@
     "lps": "^1.0.18"
   },
   "devDependencies": {
-    "eslint": "^5.5.0",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-deprecate": "^0.5.4",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-promise": "^4.0.1"
   }
 }
