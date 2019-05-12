@@ -37,6 +37,11 @@ function startTrackingServer(port) {
       }
     });
 
+    socket.on('error', (err) => {
+      Logger.log('[Error] ' + err);
+      socket.end();
+    });
+
     socket.on('end', () => {
       let indices = [];
 
